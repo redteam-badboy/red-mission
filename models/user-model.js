@@ -28,12 +28,7 @@ const UserSchema = new mongoose.Schema(
       maxlength: 100,
     },
 
-    broker: {
-      type: String,
-      trim: true,
-      minlength: 2,
-      maxlength: 100,
-    },
+   
 
     email: {
       type: String,
@@ -50,7 +45,13 @@ const UserSchema = new mongoose.Schema(
       minlength: 6,
       select: false,
     },
-
+    
+ broker: {
+      type: String,
+      trim: true,
+      minlength: 2,
+      maxlength: 100,
+    },
     // 🔹 Financial fields
     deposit: {
       type: Number,
