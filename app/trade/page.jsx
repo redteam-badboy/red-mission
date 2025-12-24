@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react"
 import { TrendingUp, Calendar, DollarSign, Target, CheckCircle, XCircle, Activity, Brain, Sparkles } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function Page() {
     const [trades, setTrades] = useState([])
     const [loading, setLoading] = useState(true)
     const [submitting, setSubmitting] = useState(false)
   const [session, setSession] = useState(null)
+  const router = useRouter()
 
 
  useEffect(() => {
@@ -100,9 +102,14 @@ const loadData = async () => {
       setSubmitting(false)
     }
   }
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 relative">
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-10 pointer-events-none"
+        style={{
+          backgroundImage: "url('/bit2.jpeg')",
+        }}
+      />
       <div className="container mx-auto max-w-5xl">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-4">

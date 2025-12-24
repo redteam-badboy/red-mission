@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname, useRouter , } from "next/navigation"
 import { useEffect, useState } from "react"
 import {
   LayoutDashboard,
@@ -45,7 +45,6 @@ export default function AdminLayout({ children }) {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }
-
   return (
     <div className="drawer lg:drawer-open  bg-slate-950">
       <input

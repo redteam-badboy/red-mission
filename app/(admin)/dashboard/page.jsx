@@ -57,6 +57,8 @@ export default function TradingOverviewPage() {
   const [isEditingBroker, setIsEditingBroker] = useState(false)
   const [brokerInput, setBrokerInput] = useState("")
   const [savingBroker, setSavingBroker] = useState(false)
+  const [broker, setBroker] = useState("")
+
 
   const [stats, setStats] = useState({
     totalTrades: 0,
@@ -101,10 +103,38 @@ export default function TradingOverviewPage() {
     }
   }
 
+const fetchUserById = async () => {
+  try {
+    if (!session?.user?.id) return null
+
+    const res = await fetch(`/api/user/${session.user.id}`, {
+      method: "GET",
+      cache: "no-store",
+    })
+    
+    if (!res.ok) {
+      throw new Error("Failed to fetch user")
+    }
+
+    const user = await res.json()
+
+    setBroker(user?.broker)
+    console.log("FETCHED USER:", user)
+
+    return user
+  } catch (error) {
+    console.error("FETCH USER ERROR:", error)
+    return null
+  }
+}
+
   useEffect(() => {
     if (session?.user?.email) {
       fetchTrades()
+      fetchUserById()
     }
+
+
   }, [session])
 
   const handleBrokerUpdate = async () => {
@@ -315,7 +345,7 @@ export default function TradingOverviewPage() {
           <p className="text-sm text-slate-300 whitespace-nowrap">
             Broker:
             <span className="ml-1 font-semibold text-secondary">
-              {session?.user?.broker || "Not set"}
+              {broker.length >1 ? broker : "Not set"}
             </span>
           </p>
 

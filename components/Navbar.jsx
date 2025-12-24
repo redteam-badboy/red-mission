@@ -41,7 +41,7 @@ export default function Navbar() {
             href="/"
             className="flex items-center gap-2 text-xl font-bold hover:text-secondary transition-colors duration-200"
           >
-            <span className="text-secondary">The Red Mission Trader</span>
+            <span className="text-secondary">The Mission Trader</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -161,6 +161,14 @@ export default function Navbar() {
                   >
                     <LayoutDashboard className="w-5 h-5" />
                     <span>Dashboard</span>
+                  </Link>
+                  <Link
+                    href="/trade"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-secondary hover:text-secondary-content transition-all duration-200"
+                  >
+                    <LayoutDashboard className="w-5 h-5" />
+                    <span>Trade</span>
                   </Link>
                   <button
                     onClick={handleSignOut}
