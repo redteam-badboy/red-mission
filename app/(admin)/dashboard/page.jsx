@@ -345,7 +345,7 @@ const fetchUserById = async () => {
           <p className="text-sm text-slate-300 whitespace-nowrap">
             Broker:
             <span className="ml-1 font-semibold text-secondary">
-              {broker.length >1 ? broker : "Not set"}
+              {broker?.length >1 ? broker : "Not set"}
             </span>
           </p>
 

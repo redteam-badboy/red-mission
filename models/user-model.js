@@ -1,6 +1,24 @@
 export const runtime = "nodejs"
 import mongoose from "mongoose"
 
+const NotesSchema = new mongoose.Schema(
+  {
+    heading: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 150,
+    },
+    text: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
+  { _id: false } // prevents extra _id for each note
+)
+
+
 const AnalysisSchema = new mongoose.Schema(
   {
     heading: {
@@ -15,8 +33,9 @@ const AnalysisSchema = new mongoose.Schema(
       trim: true,
     },
   },
-  { _id: false } // prevents extra _id for each analysis item
+  { _id: false }
 )
+
 
 const UserSchema = new mongoose.Schema(
   {
@@ -27,8 +46,6 @@ const UserSchema = new mongoose.Schema(
       minlength: 2,
       maxlength: 100,
     },
-
-   
 
     email: {
       type: String,
@@ -45,13 +62,14 @@ const UserSchema = new mongoose.Schema(
       minlength: 6,
       select: false,
     },
-    
- broker: {
+
+    broker: {
       type: String,
       trim: true,
       minlength: 2,
       maxlength: 100,
     },
+
     // 🔹 Financial fields
     deposit: {
       type: Number,
@@ -70,14 +88,13 @@ const UserSchema = new mongoose.Schema(
       default: 0,
     },
 
-    // 🔹 General notes
+    // 🔹 General notes (NOW AN ARRAY OF OBJECTS)
     notes: {
-      type: String,
-      trim: true,
-      default: "",
+      type: [NotesSchema],
+      default: [],
     },
 
-    // 🔹 Analysis entries (heading + text)
+    // 🔹 Analysis entries
     analysis: {
       type: [AnalysisSchema],
       default: [],
@@ -89,4 +106,5 @@ const UserSchema = new mongoose.Schema(
 )
 
 // Prevent model overwrite error in Next.js
-export default mongoose.models.User || mongoose.model("User", UserSchema)
+export default mongoose.models.User ||
+  mongoose.model("User", UserSchema)

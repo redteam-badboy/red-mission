@@ -6,25 +6,14 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "The Red Mission Trader",
-  description: "Red Mission Trader",
+  title: "The  Mission Trader",
+  description: "Mission Trader",
   generator: "The red Mission",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
+    icons: {
+    icon: "/bit2.jpeg",
+    apple: "/bit2.jpeg",
+  },
   },
 }
 
